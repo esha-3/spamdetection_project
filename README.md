@@ -17,10 +17,8 @@ The system uses a trained machine learning model to analyze user-input text and 
 
 * Python
 * Django
-* Scikit-learn
 * Pandas
 * NumPy
-* Joblib
 * HTML/CSS
 
 ## Project Structure
@@ -40,12 +38,6 @@ The system uses a trained machine learning model to analyze user-input text and 
    ```
 4. Open http://127.0.0.1:8004 in your browser.
 
-## Future Enhancements
-
-* Email spam detection
-* User authentication
-* Improved user interface
-* Advanced machine learning models
 
 ## Author
 
