@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpamDetector - SMS Spam Detection Dashboard</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>SpamDetector</h1>
+        </div>
+      </div>
+      <p class="subtitle">Cognitive Spam Analysis & Security Diagnostics</p>
+    </header>
+
+    <!-- Main Grid Layout -->
+    <main class="dashboard-grid">
+      
+      <!-- Left Column: Scanner Panel -->
+      <section class="panel-left">
+        
+        <!-- Input Scanner Card -->
+        <div class="glass-card scanner-card">
+          <div class="card-header">
+            <h2 class="card-title">Message Analysis</h2>
+          </div>
+          
+          <div class="input-wrapper">
+            <textarea id="sms-input" maxlength="800" placeholder="Paste or type an SMS message here to run the diagnostics..."></textarea>
+            <div class="input-stats">
+              <span id="char-counter">0 / 800 characters</span>
+              <button id="clear-btn" onclick="clearInput()" class="btn-icon" title="Clear message">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button id="check-btn" onclick="checkSpam()" class="btn-primary">
+            <span>Analyze Message</span>
+            <div class="btn-shine"></div>
+          </button>
+        </div>
+
+        <!-- Result Card (Hidden by default, fades in) -->
+        <div id="result-box" class="glass-card result-card hidden">
+          <div class="result-layout">
+            
+            <!-- Verdict and Info -->
+            <div class="result-details">
+              <div class="verdict-wrapper">
+                <span class="result-meta">DIAGNOSTIC VERDICT</span>
+                <div id="verdict" class="verdict-badge">Safe</div>
+              </div>
+              <div class="explanation-box">
+                <p id="explanation">No typical spam patterns detected. The message content aligns with conversational, normal communication (ham).</p>
+              </div>
+            </div>
+
+            <!-- Confidence Circle Gauge -->
+            <div class="gauge-wrapper">
+              <span class="result-meta">CONFIDENCE</span>
+              <div class="radial-gauge">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="42" stroke-width="8"></circle>
+                  <circle id="gauge-progress" class="gauge-fill" cx="50" cy="50" r="42" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"></circle>
+                </svg>
+                <div id="confidence-percentage" class="gauge-value">85%</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div id="error-box" class="glass-card error-card hidden">
+          <div class="error-content">
+            <svg class="error-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="error-message">Service temporarily unavailable. Please verify the backend is running.</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Stats & Log History -->
+      <section class="panel-right">
+        
+        <!-- Stats Mini-Grid -->
+        <div class="stats-grid">
+          <div class="glass-card stat-card">
+            <span class="stat-label">Total Audits</span>
+            <span id="stat-total" class="stat-value">0</span>
+          </div>
+          <div class="glass-card stat-card">
+            <span class="stat-label">Spam Blocked</span>
+            <span id="stat-spam" class="stat-value text-red">0</span>
+          </div>
+          <div class="glass-card stat-card">
+            <span class="stat-label">Spam Ratio</span>
+            <span id="stat-ratio" class="stat-value">0%</span>
+          </div>
+        </div>
+
+        <!-- History Log Card -->
+        <div class="glass-card history-card">
+          <div class="card-header border-b">
+            <h2 class="card-title">Diagnostic Log</h2>
+            <span class="badge-count" id="log-count">0 recorded</span>
+          </div>
+          
+          <!-- History Scroll Area -->
+          <div class="history-list" id="history-list">
+            <!-- Loading Indicator or empty state -->
+            <div class="empty-state" id="empty-state">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-dasharray="4"/>
+                <path d="M8 12H16" stroke-linecap="round"/>
+                <path d="M12 8V16" stroke-linecap="round"/>
+              </svg>
+              <p>No messages scanned yet</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
