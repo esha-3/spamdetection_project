@@ -38,7 +38,7 @@ The system uses a trained machine learning model to analyze user-input text and 
    ```
    python manage.py runserver
    ```
-4. Open `http://127.0.0.1:8000/` in your browser.
+4. Open ` http://127.0.0.1:8002` in your browser.
 
 ## Future Enhancements
 
