@@ -34,7 +34,6 @@ The system uses a trained machine learning model to analyze user-input text and 
 2. Go to vs code and run git clone <url>
 3. Run in vs code using live server 
   ( Open code using live server )
-4. Open http://127.0.0.1:8004 in your browser.
 
 
 ## Author
